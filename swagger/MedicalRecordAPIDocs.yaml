@@ -1,0 +1,51 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080/
+    description: Generated server url
+paths:
+  /getRecords:
+    get:
+      tags:
+        - get-medical-records-controller
+      operationId: getMedicalRecords
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MedicalRecordEntity'
+  /getRecordByName/{name}:
+    get:
+      tags:
+        - get-medical-records-controller
+      operationId: getMedicalRecordByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MedicalRecordEntity'
+components:
+  schemas:
+    MedicalRecordEntity:
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: string
+        gender:
+          type: string
+        anyPresentHealthProblems:
+          type: string
